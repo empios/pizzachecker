@@ -3,4 +3,4 @@
 
 <h2>Strona aplikacji</h2>
 
-<h3>W produkcji .... </h3>
+<a href="https://imgur.com/iKyayj9"><img src="https://i.imgur.com/iKyayj9.png" title="source: imgur.com" /></a>
