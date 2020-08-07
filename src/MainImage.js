@@ -28,7 +28,7 @@ export const MainImage = () => {
             alignContent="center"
             spacing={3}
             style={{ minHeight: '100vh' }}>
-            <Grid item xs={6} sm={5}>
+            <Grid item lg={3} sm={3}>
                 <Container>
                     <h1 className={'tracking-in-expand'}>Jesteś głodny i chcesz przyoszczędzić?<span style={{fontSize:30}}>&#127829;</span></h1>
                     <Button href={'/checkpizza'} className={'tracking-in-expand'} variant="outlined" color="secondary">Kliknij tutaj</Button>
@@ -43,9 +43,9 @@ export const MainImage = () => {
                 </Container>
 
             </Grid>
-            <Grid item xs={6} sm={3}>
+            <Grid item lg={3} sm={3}>
                 <Container>
-                <img className={'fade-in-fwd'} style={{maxWidth:500}} src={pizza}/>
+                <img className={'fade-in-fwd'} style={{maxWidth: "80%"}} src={pizza}/>
                 </Container>
             </Grid>
 

@@ -1,14 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import {Grid} from "@material-ui/core";
-import Paper from "@material-ui/core/Paper";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
-import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
 
 
 export default class CheckPizza extends React.Component {
@@ -20,18 +17,24 @@ export default class CheckPizza extends React.Component {
 
 
     state = {
-        restaurants: ['Pizzeria "PizzaNaCzas', 'Amore Mio pizza&grill', 'Pizzeria u Benka', 'Restauracja Chicago', 'CIAO BELLA!', 'Frentzza - Pizza & Friends', 'Bistro "Do Syta"', 'Dżin Pizza & Kebab', 'Oliwka Pizzeria i Restauracja', 'Pasta&Pizza House', 'Pizzeria Rukola', 'RODEO PIZZA', 'Sąsiedzi', 'Tattoo Pizza', 'Restauracja Stara Karczma', 'Restauracja Zmysły'],
+        restaurants: [],
         price: [],
         chosenRestaurant: null,
         valueOfChosenRestaurant: null
     }
 
 
+
     componentDidMount() {
         axios.get("https://cors-anywhere.herokuapp.com/https://elblagpizzaapi.herokuapp.com/").then(response => {
                 this.setState({price: response.data})
+                console.log(this.state.price)
             }
         )
+        axios.get("https://cors-anywhere.herokuapp.com/https://elblagpizzaapi.herokuapp.com/restaurant").then(response => {
+            this.setState({restaurants: response.data.restaurant})
+            console.log(this.state.restaurants)
+        })
     }
 
     handleClick(event) {
@@ -51,13 +54,13 @@ export default class CheckPizza extends React.Component {
                 style={{minHeight: '50vh'}}
             >
 
-                <Grid item xs={3} md={2} xl={2} sm={6}>
-                    <h2>Wybierz restaurację i zobacz jej cenę za 1cm<sup>3</sup></h2>
+                <Grid item xl={3} sm={12}>
+                    <h2 style={{textAlign: "center"}}>Wybierz restaurację i zobacz jej cenę za 1cm<sup>3</sup></h2>
 
                 </Grid>
 
-                <Grid item xs={3} md={2} xl={2} sm={6}>
-                    <FormControl style={{textAlign: "center"}}>
+                <Grid item xl={3} sm={12} style={{textAlign: "center"}}>
+                    <FormControl>
                         <InputLabel style={{color: "white"}}
                                     id="demo-simple-select-helper-label">Restauracja</InputLabel>
                         <Select
@@ -65,11 +68,11 @@ export default class CheckPizza extends React.Component {
                             id="demo-simple-select-helper"
                             value={this.state.chosenRestaurant}
                             onChange={this.handleClick}
-                            style={{color: "white"}}
+                            style={{color: "white", alignContent: "center"}}
                         >
                             {
                                 this.state.restaurants.map((restaurant, index) =>
-                                    <MenuItem value={index}>
+                                    <MenuItem key={index} value={index}>
                                         {restaurant}
                                     </MenuItem>
                                 )}
@@ -79,9 +82,9 @@ export default class CheckPizza extends React.Component {
                     </FormControl>
 
                 </Grid>
-                <Grid item xs={3} md={2} xl={2} sm={6}>
+                <Grid item xl={3} sm={12} style={{textAlign: "center"}}>
 
-                    <h3>{this.state.valueOfChosenRestaurant}</h3>
+                    <h3 id="getelement">{this.state.valueOfChosenRestaurant}</h3>
 
 
                 </Grid>
