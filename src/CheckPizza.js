@@ -26,18 +26,18 @@ export default class CheckPizza extends React.Component {
 
 
     componentDidMount() {
-        axios.get("https://cors-anywhere.herokuapp.com/https://elblagpizzaapi.herokuapp.com/").then(response => {
+        axios.get(process.env.REACT_APP_NOT_SECRET_CODE).then(response => {
                 this.setState({price: response.data})
             }
         )
-        axios.get("https://cors-anywhere.herokuapp.com/https://elblagpizzaapi.herokuapp.com/restaurant").then(response => {
+        axios.get(process.env.REACT_APP_NOT_SECRET_CODE).then(response => {
             this.setState({restaurants: response.data.restaurant})
         })
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevState.chosenRestaurant !== this.state.chosenRestaurant) {
-            this.setState({valueOfChosenRestaurant: this.state.price.pizzapricebysurface[this.state.chosenRestaurant]})
+                this.setState({valueOfChosenRestaurant: this.state.price.pizzapricebysurface[this.state.chosenRestaurant]})
         }
     }
 
