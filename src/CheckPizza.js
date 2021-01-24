@@ -26,12 +26,29 @@ export default class CheckPizza extends React.Component {
 
 
     componentDidMount() {
-        axios.get(process.env.REACT_APP_NOT_SECRET_CODE).then(response => {
-                this.setState({price: response.data})
+        let url = process.env.REACT_APP_NOT_SECRET_CODE
+        axios.get(url, {
+            mode: 'cors',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            console.log(response)
+            this.setState({restaurants: response.data.restaurant})
             }
         )
-        axios.get(process.env.REACT_APP_NOT_SECRET_CODE).then(response => {
-            this.setState({restaurants: response.data.restaurant})
+        axios.get(url.concat("restaurant"), {
+            mode: 'cors',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            console.log(response)
+            this.setState({price: response.data})
         })
     }
 
