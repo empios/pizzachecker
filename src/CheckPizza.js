@@ -26,11 +26,11 @@ export default class CheckPizza extends React.Component {
 
 
     componentDidMount() {
-        axios.get("https://cors-anywhere.herokuapp.com/https://elblagpizzaapi.herokuapp.com/").then(response => {
+        axios.get("https://thingproxy.freeboard.io/fetch/https://elblagpizzaapi.herokuapp.com/").then(response => {
                 this.setState({price: response.data})
             }
         )
-        axios.get("https://cors-anywhere.herokuapp.com/https://elblagpizzaapi.herokuapp.com/restaurant").then(response => {
+        axios.get("https://thingproxy.freeboard.io/fetch/https://elblagpizzaapi.herokuapp.com/restaurant").then(response => {
             this.setState({restaurants: response.data.restaurant})
         })
     }
